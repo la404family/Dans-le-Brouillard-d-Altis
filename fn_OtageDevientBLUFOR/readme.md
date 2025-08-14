@@ -33,6 +33,8 @@ Le village de Chalkeia (Altis)
 - Créer un fichier description.ext pour la description de la mission, la gestion du son, les paramètres de la mission, etc.
 - Définir dans le fichier init en commentaire tout ce que vous avez défini dans l'éditeur Arma 3.
 
+Voir le code du fichier [init.sqf](../init.sqf)
+
 ## Comment coder une fonction (fonction de conversion de l'otage en soldat BLUFOR)
 
 - Créer un fichier fn_OtageDevientBLUFOR.sqf pour la fonction de conversion de l'otage en soldat BLUFOR.
