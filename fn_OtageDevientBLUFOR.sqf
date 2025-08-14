@@ -26,35 +26,27 @@
 	private _assignedItems = assignedItems hostageVIP;
 	private _weapons = weapons hostageVIP;
 	private _magazines = magazines hostageVIP;
-	
+	// Attendre 1 seconde 
+	sleep 1;
 	// Supprimer l'ancien civil
 	deleteVehicle hostageVIP;
-	
 	// Créer un nouveau soldat BLUFOR
 	private _newGroup = createGroup west;
-
-	hostageVIP = _newGroup createUnit ["B_Soldier_F", _originalPos, [], 0, "NONE"];
-
-	
-	
+	hostageVIP = _newGroup createUnit ["B_Soldier_F", _originalPos, [], 0, "NONE"];	
 	// Attendre que l'unité soit complètement créée
 	waitUntil {!isNull hostageVIP};
-
 	// Restaurer la position et direction
 	hostageVIP setPosATL _originalPos;  // Utilise setPosATL pour maintenir la hauteur relative
 	// ajouter 0.5 de hauteur pour ne pas qu'il se retrouve dans le sol ou à l'étage en dessous
 	_originalPos set [2, (_originalPos select 2) + 0.5];
 	hostageVIP setDir _originalDir;
-	
-	
-	// nom du soldat BLUFOR : Mathieu Bernard
+		// nom du soldat BLUFOR : Mathieu Bernard
 	// Code gérer dans le fichier description.ext
 	hostageVIP setIdentity "OtageMathieu";
 	// Restaurer l'identité
 	hostageVIP setFace _originalFace;
 	hostageVIP setSpeaker _originalSpeaker;
 	hostageVIP setPitch _originalPitch;
-	
 	// Vider l'inventaire par défaut
 	removeAllWeapons hostageVIP;
 	removeAllItems hostageVIP;
@@ -64,7 +56,6 @@
 	removeBackpack hostageVIP;
 	removeHeadgear hostageVIP;
 	removeGoggles hostageVIP;
-	
 	// Restaurer les vêtements
 	if (_uniform != "") then { hostageVIP forceAddUniform _uniform; };
 	if (_vest != "") then { hostageVIP addVest _vest; };
@@ -79,6 +70,8 @@
 	hostageVIP switchMove "";
 	sleep 2;
 	hostageVIP playMove "";
+	// Attendre 1 seconde 
+	sleep 1;
 	// Restaurer l'inventaire
 	{hostageVIP addItemToUniform _x} forEach _uniformItems;
 	{hostageVIP addItemToVest _x} forEach _vestItems;
