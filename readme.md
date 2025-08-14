@@ -8,15 +8,15 @@ Un drone survolera la zone pour détecter les ennemies et les indiquer sur la ca
 
 ## Mise en place de la mission [1er partie]
 
-- [001. Conversion d'un civil en soldat BLUFOR](./fn_OtageDevientBLUFOR/readme.md)
-- [002. Extraction de l'otage dans un véhicule](./fn_ottageDansVehicule/readme.md)
+- 1. [Conversion d'un civil en soldat BLUFOR](./fn_OtageDevientBLUFOR/readme.md)
+- 2. [Extraction de l'otage dans un véhicule](./fn_ottageDansVehicule/readme.md)
 
 [Regarder la vidéo sur YouTube](https://www.youtube.com/shorts/S-8VCvEvptc)
 
 ## Ajout de la zone de couverture du drone [2ème partie]
 
-- [003. Mettre les voix des BLUFOR et des civils en français](./fn_zoneCouvertureDrone/readme.md)
+- 3. Mettre les voix des BLUFOR et des civils en français
   - Voir le code du fichier [init.sqf](../init.sqf) dans la partie : mettre tous les BLUFOR et le civil du jeu en voix Françaises
-- [004. Ajout de la zone de couverture du drone](./fn_zoneArriveeDepart/readme.md)
+- 4. [Ajout de la zone de couverture du drone](./fn_zoneCouvertureDrone/readme.md)
 
 [Regarder la vidéo sur YouTube](https://www.youtube.com/shorts/kc7yryzdNM4)
