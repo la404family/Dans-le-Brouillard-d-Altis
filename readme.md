@@ -8,19 +8,20 @@ Un drone survolera la zone pour détecter les ennemies et les indiquer sur la ca
 
 ## Mise en place de la mission [1er partie]
 
-- 1. [Conversion d'un civil en soldat BLUFOR](./fn_OtageDevientBLUFOR.sqf)
-- 2. [Extraction de l'otage dans un véhicule](./fn_ottageDansVehicule.sqf)
+- 1.[Conversion d'un civil en soldat BLUFOR](./fn_OtageDevientBLUFOR.sqf)
+
+- 2.[Extraction de l'otage dans un véhicule](./fn_ottageDansVehicule.sqf)
 
 [Regarder la vidéo sur YouTube](https://www.youtube.com/shorts/S-8VCvEvptc)
 
 ## Ajout de la zone de couverture du drone [2ème partie]
 
-- 3. [Mettre les voix des BLUFOR et des civils en français](./fn_BLUFORenFR.sqf)
-- 4. [Ajout de la zone de couverture du drone](./fn_zoneCouvertureDrone.sqf)
+- 3.[Mettre les voix des BLUFOR et des civils en français](./fn_BLUFORenFR.sqf)
+- 4.[Ajout de la zone de couverture du drone](./fn_zoneCouvertureDrone.sqf)
 
 [Regarder la vidéo sur YouTube](https://www.youtube.com/shorts/kc7yryzdNM4)
 
 ## Ajout d'un lieu aléatoire pour l'atterrissage de départ [2ème partie]
 
-- 5. [Changement des identités des BLUFOR](./fn_changementIdentite.sqf)
-- 6. [Départ aléatoire de l'hélicoptère](./fn_departAleatoireHeliport.sqf)
+- 5.[Changement des identités des BLUFOR](./fn_changementIdentite.sqf)
+- 6.[Départ aléatoire de l'hélicoptère](./fn_departAleatoireHeliport.sqf)
