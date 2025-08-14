@@ -71,7 +71,7 @@
 	sleep 2;
 	hostageVIP playMove "";
 	// Attendre 1 seconde 
-	sleep 1;
+	sleep 3;
 	// Restaurer l'inventaire
 	{hostageVIP addItemToUniform _x} forEach _uniformItems;
 	{hostageVIP addItemToVest _x} forEach _vestItems;

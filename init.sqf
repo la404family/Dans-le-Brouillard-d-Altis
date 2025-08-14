@@ -4,6 +4,12 @@
 // ConducteurCamionExtractionOtage est le conducteur du camion qui va extraire l'otage
 // camionExtractionOtage est le camion qui va extraire l'otage
 // directionCamionExtraction est un objet vide dans le jeu qui permet de définir la direction du camion
+// zoneCouvertureDrone est un marker qui permet de définir la zone de couverture du drone
+// droneBLUFOR est le drone qui surveille la zone
+
+
+// fn_zoneCouvertureDrone est un trigger qui permet de déclancher la zone de couverture du drone
+// [] execVM "fn_zoneCouvertureDrone.sqf";
 
 // fn_OtageDevientBLUFOR est un trigger qui permet de changer le civile en BLUFOR
 // [] execVM "fn_OtageDevientBLUFOR.sqf";
@@ -14,3 +20,28 @@
 // LOGIQUE GLOBALE DE LA MISSION 
 // si hostageVIP est mort àlors c'est la fin de la mission (pas d'échec mais retour à l'hélicoptère)
 
+// mettre tous les BLUFOR et le civil du jeu en voix Françaises : 
+// Définir le nom du speaker français (exemple : "Male01FRE")
+private _frenchSpeaker = "Male01FRE";
+
+// Fonction pour appliquer la voix à une unité
+private _applyFrenchVoice = {
+    params ["_unit"];
+    if (!isNull _unit && {alive _unit}) then {
+        _unit setSpeaker _frenchSpeaker;
+    };
+};
+
+// Appliquer aux unités BLUFOR
+{
+    if (side _x == west) then {
+        [_x] call _applyFrenchVoice;
+    };
+} forEach allUnits;
+
+// Appliquer aux civils
+{
+    if (side _x == civilian) then {
+        [_x] call _applyFrenchVoice;
+    };
+} forEach allUnits;
