@@ -11,6 +11,10 @@ Un drone survolera la zone pour détecter les ennemies et les indiquer sur la ca
 - [001. Conversion d'un civil en soldat BLUFOR](./fn_OtageDevientBLUFOR/readme.md)
 - [002. Extraction de l'otage dans un véhicule](./fn_ottageDansVehicule/readme.md)
 
-## Vidéo de démonstration
+### Vidéo de démonstration
 
 <video src="Vidéo001.mp4"></video>
+
+## Ajout de la zone d'arrivée et de départ
+
+- ... A suivre ...
