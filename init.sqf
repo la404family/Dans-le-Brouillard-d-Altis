@@ -31,3 +31,6 @@
 
 // mettre tous les BLUFOR et le civil du jeu en voix Françaises :
 [] execVM "fn_BLUFORenFR.sqf";
+
+// Mettre des noms et prénoms français aux unités BLUFOR
+[] execVM "fn_changementIdentite.sqf";
