@@ -18,5 +18,10 @@ camionExtractionOtage lock true;
 ConducteurCamionExtractionOtage doMove (getPos directionCamionExtraction);
 camionExtractionOtage setSpeedMode "FULL";
 
+// Lorsque le camion est arrivé à la destination, supprimer le conducteur du camion, le camion et l'otage
+waitUntil {camionExtractionOtage distance directionCamionExtraction < 50};
+deleteVehicle ConducteurCamionExtractionOtage;
+deleteVehicle camionExtractionOtage;
+deleteVehicle hostageVIP;
 // Optionnel : Message de confirmation
 hint "L'otage est dans le camion, extraction en cours !";

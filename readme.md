@@ -15,8 +15,12 @@ Un drone survolera la zone pour détecter les ennemies et les indiquer sur la ca
 
 ## Ajout de la zone de couverture du drone [2ème partie]
 
-- 3. Mettre les voix des BLUFOR et des civils en français
-  - Voir le code du fichier [init.sqf](./init.sqf) dans la partie : mettre tous les BLUFOR et le civil du jeu en voix Françaises
+- 3. [Mettre les voix des BLUFOR et des civils en français](./fn_BLUFORenFR/readme.md)
 - 4. [Ajout de la zone de couverture du drone](./fn_zoneCouvertureDrone/readme.md)
 
 [Regarder la vidéo sur YouTube](https://www.youtube.com/shorts/kc7yryzdNM4)
+
+## Ajout d'un lieu aléatoire pour l'atterrissage de départ [2ème partie]
+
+- 5. [Changement des identités des BLUFOR](./fn_changementIdentitesBLUFOR/readme.md)
+- 6. [Départ aléatoire de l'hélicoptère](./fn_departAleatoireHeliport/readme.md)
