@@ -13,9 +13,16 @@ Un drone survolera la zone pour détecter les ennemies et les indiquer sur la ca
 
 ### Vidéo de démonstration
 
-<video src="Vidéo1.mp4" controls width="600">
-  Votre navigateur ne supporte pas la balise vidéo.
-</video>
+<div align="center">
+<iframe 
+  width="315" 
+  height="560" 
+  src="https://www.youtube.com/embed/S-8VCvEvptc" 
+  title="YouTube Short" 
+  frameborder="0" 
+  allowfullscreen>
+</iframe>
+</div>
 
 ## Ajout de la zone d'arrivée et de départ
 

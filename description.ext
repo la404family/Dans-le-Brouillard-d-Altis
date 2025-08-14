@@ -10,11 +10,4 @@ class CfgIdentities
         pitch = 1.0;
     };
 
-    // Tout les BLUFOR sont Français
-    class BLUFOR
-    {
-        name = "Français";
-        speaker = "Male01FR";
-        pitch = 1.0;
-    };
 };
