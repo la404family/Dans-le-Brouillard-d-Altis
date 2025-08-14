@@ -5,12 +5,12 @@
 | ![capture001](Capture001.jpg) |
 | :---------------------------: |
 
-Placer sur la carte (proche du joueur) un camion d'extraction avec son conducteur, un déclancheur, un objet vide pour définir la direction du camion. Nommer les variables comme suit :
+Placer sur la carte (proche du joueur) un camion d'extraction avec son conducteur, un déclancheur, un objet vide (j'ai placé une pierre) pour définir la direction du camion. Nommer les variables comme suit :
 
 | ![capture002](Capture002.jpg) |
 | :---------------------------: |
 
-La condition : "this && (hostageVIP in thisList) && alive hostageVIP" permet de vérifier que le civil est présent dans le déclancheur et que l'otage est vivant. Cette condition est nécessaire pour éviter que le camion d'extraction parte sans l'otage.
+La condition : "this && (hostageVIP in thisList) && alive hostageVIP" permet de vérifier que l'otage est présent dans le déclancheur et que l'otage est vivant. Cette condition est nécessaire pour éviter que le camion d'extraction parte sans l'otage.
 
 Le camion est verrouillé pour les joueurs afin d'éviter que d'autres unités y accèdent.
 
@@ -30,4 +30,4 @@ _NOTE_ : Pendant la phase de développement, on place tous les élements à prox
 
 ## Fin de la section
 
-Avec cette fonction, nous avons déja défini la logique pour la mission principale.
+Avec cette fonction, nous avons défini le second objectif de la mission.

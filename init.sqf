@@ -12,5 +12,5 @@
 // [] execVM "fn_ottageDansVehicule.sqf";
 
 // LOGIQUE GLOBALE DE LA MISSION 
-// si hostageVIP est mort àlors c'est la fin de la mission (retour à l'hélicoptère)
+// si hostageVIP est mort àlors c'est la fin de la mission (pas d'échec mais retour à l'hélicoptère)
 
