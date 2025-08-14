@@ -6,7 +6,8 @@
 // directionCamionExtraction est un objet vide dans le jeu qui permet de définir la direction du camion
 // zoneCouvertureDrone est un marker qui permet de définir la zone de couverture du drone
 // droneBLUFOR est le drone qui surveille la zone
-
+// directionDroneFinDeMission est un objet vide dans le jeu qui permet de définir la direction du drone à la fin de la mission
+// volEnAttente est un Waypoint qui permet de définir le vol en attente du drone
 
 // fn_zoneCouvertureDrone est un trigger qui permet de déclancher la zone de couverture du drone
 // [] execVM "fn_zoneCouvertureDrone.sqf";

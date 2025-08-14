@@ -89,7 +89,28 @@ if (isNil "droneSurveillance_Active") then {
             } forEach _enemiesDetected;
             
         } else {
-            systemChat "Information du drone mise à jour : Zone sécurisée - Aucun contact hostile";
+            systemChat "Information du drone mise à jour : Zone sécurisée";
+            sleep 10;
+            systemChat "Fin de la mission pour le drone";
+			// supprimer le waypoint volEnAttente (ou tous les waypoints du groupe du drone)
+			private _droneGroup = group droneBLUFOR;
+			if (!isNil "volEnAttente") then {
+				deleteWaypoint volEnAttente;
+			} else {
+				while {count (waypoints _droneGroup) > 0} do {
+					deleteWaypoint ((waypoints _droneGroup) select ((count (waypoints _droneGroup)) - 1));
+				};
+			};
+			// Faire conduire le drone à toute vitesse vers directionDroneFinDeMission
+		droneBLUFOR doMove (getPos directionDroneFinDeMission);
+		droneBLUFOR setSpeedMode "FULL";
+		// Attendre que le drone soit arrivé à destination
+		waitUntil {droneBLUFOR distance directionDroneFinDeMission < 50};
+		// Supprimer le drone
+		deleteVehicle droneBLUFOR;
+		// Désactiver la surveillance
+		droneSurveillance_Active = false;
+		hint "Fin pour le drone";
         };
         
         // Attendre 35 secondes avant la prochaine mise à jour
@@ -102,8 +123,7 @@ if (isNil "droneSurveillance_Active") then {
     } forEach droneMarkers_BLUFOR;
     droneMarkers_BLUFOR = [];
     missionNamespace setVariable ["droneSurveillance_Running", false];
-    
-    systemChat "Surveillance zone: désactivée - restez sur vos gardes";
+   
 };
 
 // Confirmer l'initialisation

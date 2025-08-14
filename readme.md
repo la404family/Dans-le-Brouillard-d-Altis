@@ -18,3 +18,5 @@ Un drone survolera la zone pour détecter les ennemies et les indiquer sur la ca
 - [003. Mettre les voix des BLUFOR et des civils en français](./fn_zoneCouvertureDrone/readme.md)
   - Voir le code du fichier [init.sqf](../init.sqf) dans la partie : mettre tous les BLUFOR et le civil du jeu en voix Françaises
 - [004. Ajout de la zone de couverture du drone](./fn_zoneArriveeDepart/readme.md)
+
+[Regarder la vidéo sur YouTube](https://www.youtube.com/shorts/kc7yryzdNM4)
