@@ -6,24 +6,13 @@ L'objectif est de récupérer l'otage et de le ramener à un véhicule puis pren
 Il y a un brouillard qui rend la vue limitée, il faut donc être prudent et utiliser les moyens de détection.
 Un drone survolera la zone pour détecter les ennemies et les indiquer sur la carte.
 
-## Consultez le guide principal ici
+## Mise en place de la mission [1er partie]
 
 - [001. Conversion d'un civil en soldat BLUFOR](./fn_OtageDevientBLUFOR/readme.md)
 - [002. Extraction de l'otage dans un véhicule](./fn_ottageDansVehicule/readme.md)
 
-### Vidéo de démonstration
+[Regarder la vidéo sur YouTube](https://www.youtube.com/shorts/S-8VCvEvptc)
 
-<div align="center">
-<iframe 
-  width="315" 
-  height="560" 
-  src="https://www.youtube.com/embed/S-8VCvEvptc" 
-  title="YouTube Short" 
-  frameborder="0" 
-  allowfullscreen>
-</iframe>
-</div>
-
-## Ajout de la zone d'arrivée et de départ
+## Ajout de la zone d'arrivée et de départ [2ème partie]
 
 - ... A suivre ...
