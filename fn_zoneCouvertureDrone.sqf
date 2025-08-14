@@ -5,13 +5,12 @@ if (missionNamespace getVariable ["droneSurveillance_Running", false]) exitWith 
 };
 missionNamespace setVariable ["droneSurveillance_Running", true];
 
-// Attendre 15 secondes avant de commencer la surveillance
+// Attendre 45 secondes avant de commencer la surveillance
 sleep 45;
 
 // Message de démarrage
 systemChat "Drone déployé sur la zone...";
 sleep 10;
-systemChat "...Début de la reconnaissance de zone";
 
 // Variables pour les marqueurs de surveillance
 if (isNil "droneMarkers_BLUFOR") then {
@@ -77,7 +76,7 @@ if (isNil "droneSurveillance_Active") then {
             {
                 private _enemy = _x;
                 private _markerName = format ["droneBLUFOR_contact_%1_%2", floor(time), _forEachIndex];
-                
+                // affichage d'un point rouge sur la carte pour chaque ennemi détecté
                 private _marker = createMarker [_markerName, getPosATL _enemy];
                 _marker setMarkerType "mil_dot";
                 _marker setMarkerColor "ColorRed";
@@ -89,6 +88,7 @@ if (isNil "droneSurveillance_Active") then {
             } forEach _enemiesDetected;
             
         } else {
+            // S'il n'y a plus d'ennemis détectés, on affiche un message de fin de mission
             systemChat "Information du drone mise à jour : Zone sécurisée";
             sleep 10;
             systemChat "Fin de la mission pour le drone";
@@ -104,13 +104,12 @@ if (isNil "droneSurveillance_Active") then {
 			// Faire conduire le drone à toute vitesse vers directionDroneFinDeMission
 		droneBLUFOR doMove (getPos directionDroneFinDeMission);
 		droneBLUFOR setSpeedMode "FULL";
-		// Attendre que le drone soit arrivé à destination
+		// Attendre que le drone soit arrivé proche de la destination
 		waitUntil {droneBLUFOR distance directionDroneFinDeMission < 50};
 		// Supprimer le drone
 		deleteVehicle droneBLUFOR;
 		// Désactiver la surveillance
 		droneSurveillance_Active = false;
-		hint "Fin pour le drone";
         };
         
         // Attendre 35 secondes avant la prochaine mise à jour
@@ -127,4 +126,4 @@ if (isNil "droneSurveillance_Active") then {
 };
 
 // Confirmer l'initialisation
-systemChat "Système de surveillance du drone initialisé";
+systemChat "Système de surveillance par drone initialisé";

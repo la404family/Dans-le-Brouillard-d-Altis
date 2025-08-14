@@ -20,11 +20,8 @@ Le drone est positionné à une place stratégique (premier vol en attente), qua
 
 On positionne le drone loin de la zone de couverture du drone. On décoche la case "Activer les dégats". et on lui assigne un premier waypoint (volEnAttente).
 
-| ![capture001](Capture001.jpg) |
-| :---------------------------: |
-
-| ![capture001bis](Capture001bis.jpg) |
-| :---------------------------------: |
+| ![capture001](Capture001bis.jpg) |
+| :------------------------------: |
 
 ### Le marqueur, le déclencheur et le deuxième waypoint
 
