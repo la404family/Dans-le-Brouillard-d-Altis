@@ -21,7 +21,7 @@ Un drone survolera la zone pour détecter les ennemies et les indiquer sur la ca
 
 [Regarder la vidéo sur YouTube](https://www.youtube.com/shorts/kc7yryzdNM4)
 
-## Ajout d'un lieu aléatoire pour l'atterrissage de départ [2ème partie]
+## Ajout d'un lieu aléatoire pour l'atterrissage de départ [3ème partie]
 
 - 5.[Changement des identités des BLUFOR](./fn_changementIdentite.sqf)
 - 6.[Départ aléatoire de l'hélicoptère](./fn_departAleatoireHeliport.sqf)
