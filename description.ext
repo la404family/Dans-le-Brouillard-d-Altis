@@ -1,2 +1,11 @@
 
 
+class CfgIdentities
+{
+    class OtageMathieu
+    {
+        name = "Mathieu Bernard";
+        speaker = "Male01FR";
+        pitch = 1.0;
+    };
+};

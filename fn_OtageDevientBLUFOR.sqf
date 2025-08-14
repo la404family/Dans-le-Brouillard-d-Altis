@@ -32,24 +32,28 @@
 	
 	// Créer un nouveau soldat BLUFOR
 	private _newGroup = createGroup west;
+
 	hostageVIP = _newGroup createUnit ["B_Soldier_F", _originalPos, [], 0, "NONE"];
+
+	
 	
 	// Attendre que l'unité soit complètement créée
 	waitUntil {!isNull hostageVIP};
-	
+
 	// Restaurer la position et direction
 	hostageVIP setPosATL _originalPos;  // Utilise setPosATL pour maintenir la hauteur relative
 	// ajouter 0.5 de hauteur pour ne pas qu'il se retrouve dans le sol ou à l'étage en dessous
 	_originalPos set [2, (_originalPos select 2) + 0.5];
 	hostageVIP setDir _originalDir;
 	
+	
+	// nom du soldat BLUFOR : Mathieu Bernard
+	// Code gérer dans le fichier description.ext
+	hostageVIP setIdentity "OtageMathieu";
 	// Restaurer l'identité
-	hostageVIP setName _originalName;
 	hostageVIP setFace _originalFace;
 	hostageVIP setSpeaker _originalSpeaker;
 	hostageVIP setPitch _originalPitch;
-	
-	
 	
 	// Vider l'inventaire par défaut
 	removeAllWeapons hostageVIP;
@@ -67,7 +71,6 @@
 	if (_backpack != "") then { hostageVIP addBackpack _backpack; };
 	if (_headgear != "") then { hostageVIP addHeadgear _headgear; };
 	if (_goggles != "") then { hostageVIP addGoggles _goggles; };
-	
 	
 	
 	// Rejoindre le groupe du joueur
