@@ -23,6 +23,9 @@ On positionne le drone loin de la zone de couverture du drone. On décoche la ca
 | ![capture001](Capture001.jpg) |
 | :---------------------------: |
 
+| ![capture001bis](Capture001bis.jpg) |
+| :---------------------------------: |
+
 ### Le marqueur, le déclencheur et le deuxième waypoint
 
 On positionne un marqueur "zoneCouvertureDrone", un déclencheur "fn_zoneCouvertureDrone" et le deuxieme waypoint, exactement au meme endroit. (pas comme sur la capture)
