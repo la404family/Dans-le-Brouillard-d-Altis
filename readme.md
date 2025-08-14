@@ -6,10 +6,25 @@ L'objectif est de récupérer l'otage et de le ramener à un véhicule puis pren
 Il y a un brouillard qui rend la vue limitée, il faut donc être prudent et utiliser les moyens de détection.
 Un drone survolera la zone pour détecter les ennemies et les indiquer sur la carte.
 
+## Variables en jeu
+
+- hostageVIP est un civil otage dans le village
+- ConducteurCamionExtractionOtage est le conducteur du camion qui va extraire l'otage
+- camionExtractionOtage est le camion qui va extraire l'otage
+- directionCamionExtraction est un objet vide dans le jeu qui permet de définir la direction du camion
+- zoneCouvertureDrone est un marker qui permet de définir la zone de couverture du drone
+- droneBLUFOR est le drone qui surveille la zone
+- directionDroneFinDeMission est un objet vide dans le jeu qui permet de définir la direction du drone à la fin de la mission
+- volEnAttente est un Waypoint qui permet de définir le vol en attente du drone
+- heliport_01, heliport_02, heliport_03, heliport_04 sont les héliports de départ et d'arrivée de l'hélicoptère
+- helimarker_01, helimarker_02, helimarker_03, helimarker_04 sont les marqueurs des héliports
+- heliBLUFOR est l'hélicoptère BLUFOR
+- heliBLUFORPILOT est le pilote de l'hélicoptère et le chef de groupe
+- player1, player2, player3, player4, player5, player6, player7, player8, player9, player10 sont les joueurs
+
 ## Mise en place de la mission [1er partie]
 
 - 1.[Conversion d'un civil en soldat BLUFOR](./fn_OtageDevientBLUFOR.sqf)
-
 - 2.[Extraction de l'otage dans un véhicule](./fn_ottageDansVehicule.sqf)
 
 [Regarder la vidéo sur YouTube](https://www.youtube.com/shorts/S-8VCvEvptc)
