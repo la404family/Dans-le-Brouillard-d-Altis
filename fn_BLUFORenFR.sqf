@@ -9,16 +9,9 @@ private _applyFrenchVoice = {
     };
 };
 
-// Appliquer aux unités BLUFOR
+// Appliquer aux unités BLUFOR uniquement
 {
     if (side _x == west) then {
-        [_x] call _applyFrenchVoice;
-    };
-} forEach allUnits;
-
-// Appliquer aux civils
-{
-    if (side _x == civilian) then {
         [_x] call _applyFrenchVoice;
     };
 } forEach allUnits;
