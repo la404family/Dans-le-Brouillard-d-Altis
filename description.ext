@@ -40,54 +40,55 @@ class CfgIdentities
     {
         name = "Mathieu Bernard";
         speaker = "Male01FR";
-        pitch = 1.0;
+        face = "WhiteHead_05";
+        pitch = 0.8;
     };
-      // Identités masculines françaises
+    
+    // Identités masculines françaises
     class FrenchSoldier01
     {
         name = "Alexandre Martin";
-        nameSound = "";
+        speaker = "Male02FR";
         face = "WhiteHead_01";
-        glasses = "";
-        pitch = 1.0;
+        pitch = 0.7;
     };
     
     class FrenchSoldier02
     {
         name = "Pierre Dubois";
-        nameSound = "";
+        speaker = "Male03FR";
         face = "WhiteHead_02";
-        pitch = 1.0;
+        pitch = 0.98;
     };
     
     class FrenchSoldier03
     {
         name = "Thomas Moreau";
-        nameSound = "";
+        speaker = "Male01FR";
         face = "WhiteHead_03";
-        pitch = 1.0;
+        pitch = 0.5;
     };
     
     class FrenchSoldier04
     {
         name = "Antoine Laurent";
-        nameSound = "";
+        speaker = "Male01FR";
         face = "WhiteHead_04";
-        pitch = 1.0;
+        pitch = 0.6;
     };
     
     class FrenchSoldier05
     {
         name = "Ahmed Makhlouf";
-        nameSound = "";
+        speaker = "Male02FR";
         face = "PersianHead_A3_01";
-        pitch = 1.0;
+        pitch = 0.95;
     };
     
     class FrenchSoldier06
     {
         name = "Nicolas Michel";
-        nameSound = "";
+        speaker = "Male05FR";
         face = "WhiteHead_06";
         pitch = 1.0;
     };
@@ -95,31 +96,31 @@ class CfgIdentities
     class FrenchSoldier07
     {
         name = "Sébastien Leroy";
-        nameSound = "";
+        speaker = "Male03FR";
         face = "WhiteHead_07";
-        pitch = 1.0;
+        pitch = 0.9;
     };
     
     class FrenchSoldier08
     {
         name = "Vincent Roux";
-        nameSound = "";
+        speaker = "Male01FR";
         face = "WhiteHead_08";
-        pitch = 1.0;
+        pitch = 0.97;
     };
     
     class FrenchSoldier09
     {
         name = "Maxime David";
-        nameSound = "";
+        speaker = "Male01FR";
         face = "WhiteHead_09";
-        pitch = 1.0;
+        pitch = 0.95;
     };
     
     class FrenchSoldier10
     {
         name = "Clément Bertrand";
-        nameSound = "";
+        speaker = "Male02FR";
         face = "WhiteHead_10";
         pitch = 1.0;
     };
@@ -127,15 +128,15 @@ class CfgIdentities
     class FrenchSoldier11
     {
         name = "Romain Morel";
-        nameSound = "";
+        speaker = "Male05FR";
         face = "WhiteHead_11";
-        pitch = 1.0;
+        pitch = 0.99;
     };
     
     class FrenchSoldier12
     {
         name = "Guillaume Fournier";
-        nameSound = "";
+        speaker = "Male03FR";
         face = "WhiteHead_12";
         pitch = 1.0;
     };
@@ -143,31 +144,31 @@ class CfgIdentities
     class FrenchSoldier13
     {
         name = "Benjamin Girard";
-        nameSound = "";
+        speaker = "Male01FR";
         face = "WhiteHead_13";
-        pitch = 1.05;
+        pitch = 0.7;
     };
     
     class FrenchSoldier14
     {
         name = "Mamadou Diallo";
-        nameSound = "";
-        face ="AfricanHead_01";
+        speaker = "Male01FR";
+        face = "AfricanHead_01";
         pitch = 0.95;
     };
     
     class FrenchSoldier15
     {
         name = "Damien Dupont";
-        nameSound = "";
+        speaker = "Male02FR";
         face = "WhiteHead_15";
-        pitch = 1.1;
+        pitch = 0.95;
     };
     
     class FrenchSoldier16
     {
         name = "Fabien Lambert";
-        nameSound = "";
+        speaker = "Male03FR";
         face = "WhiteHead_16";
         pitch = 0.9;
     };
@@ -175,7 +176,7 @@ class CfgIdentities
     class FrenchSoldier17
     {
         name = "Louis Fontaine";
-        nameSound = "";
+        speaker = "Male03FR";
         face = "WhiteHead_17";
         pitch = 1.0;
     };
@@ -183,15 +184,15 @@ class CfgIdentities
     class FrenchSoldier18
     {
         name = "Quentin Rousseau";
-        nameSound = "";
+        speaker = "Male01FR";
         face = "WhiteHead_18";
-        pitch = 1.0;
+        pitch = 0.95;
     };
     
     class FrenchSoldier19
     {
-        name = "Aziz BenAmmar";
-        nameSound = "";
+        name = "Aziz Ben Ammar";
+        speaker = "Male01FR";
         face = "PersianHead_A3_02";
         pitch = 1.0;
     };
@@ -199,15 +200,16 @@ class CfgIdentities
     class FrenchSoldier20
     {
         name = "Baptiste Mercier";
-        nameSound = "";
+        speaker = "Male02FR";
         face = "WhiteHead_20";
-        pitch = 1.0;
+        pitch = 0.98;
     };
     
     class FrenchSoldier21
     {
         name = "Cyril Blanc";
-        nameSound = "";
+        nameSound = "Cyril";
+        speaker = "Male05FR";
         face = "WhiteHead_21";
         pitch = 1.0;
     };
@@ -215,23 +217,23 @@ class CfgIdentities
     class FrenchSoldier22
     {
         name = "Moussa Coulibaly";
-        nameSound = "";
-        face ="AfricanHead_03";
+        speaker = "Male03FR";
+        face = "AfricanHead_03";
         pitch = 1.0;
     };
     
     class FrenchSoldier23
     {
         name = "François Marcopoli";
-        nameSound = "";
+        speaker = "Male01FR";
         face = "GreekHead_A3_02";
-        pitch = 1.0;
+        pitch = 0.96;
     };
     
     class FrenchSoldier24
     {
         name = "Henri Garnier";
-        nameSound = "";
+        speaker = "Male01FR";
         face = "GreekHead_A3_03";
         pitch = 1.0;
     };
@@ -239,23 +241,23 @@ class CfgIdentities
     class FrenchSoldier25
     {
         name = "Jérôme Chevalier";
-        nameSound = "";
+        speaker = "Male02FR";
         face = "GreekHead_A3_04";
         pitch = 0.95;
     };
     
     class FrenchSoldier26
     {
-        name = "Amadou Kante";
-        nameSound = "";
-        face ="AfricanHead_03";
+        name = "Amadou Kanté";
+        speaker = "Male05FR";
+        face = "AfricanHead_03";
         pitch = 1.05;
     };
     
     class FrenchSoldier27
     {
         name = "Laurent Legrand";
-        nameSound = "";
+        speaker = "Male03FR";
         face = "GreekHead_A3_06";
         pitch = 1.0;
     };
@@ -263,26 +265,23 @@ class CfgIdentities
     class FrenchSoldier28
     {
         name = "Michel Gauthier";
-        nameSound = "";
+        speaker = "Male01FR";
         face = "GreekHead_A3_07";
-        pitch = 1.0;
+        pitch = 0.88;
     };
     
     class FrenchSoldier29
     {
         name = "Olivier Garcia";
-        nameSound = "";
+        speaker = "Male01FR";
         face = "GreekHead_A3_08";
         pitch = 1.0;
     };
-    
     class FrenchSoldier30
     {
-        name = "Marvin N'Diaye";
-        nameSound = "";
-        face = "TanoanHead_African_01"
+        name = "Kylian Talbot";
+        speaker = "Male01FR";
+        face = "GreekHead_A3_08";
         pitch = 1.0;
     };
-    
 };
-
