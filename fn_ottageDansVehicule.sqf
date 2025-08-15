@@ -13,6 +13,8 @@ waitUntil {hostageVIP in camionExtractionOtage};
 
 // Verrouiller le camion pour empêcher d'autres unités de monter
 camionExtractionOtage lock true;
+// mettre l'essence du camion à 100%
+camionExtractionOtage setFuel 1;
 
 // Faire conduire le camion à toute vitesse vers directionCamionExtraction
 ConducteurCamionExtractionOtage doMove (getPos directionCamionExtraction);
@@ -24,4 +26,4 @@ deleteVehicle ConducteurCamionExtractionOtage;
 deleteVehicle camionExtractionOtage;
 deleteVehicle hostageVIP;
 // Optionnel : Message de confirmation
-hint "L'otage est dans le camion, extraction en cours !";
+systemChat "L'otage est en sécurité, continuez votre mission";

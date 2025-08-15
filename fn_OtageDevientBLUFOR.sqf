@@ -107,7 +107,7 @@
 	hostageVIP enableAI "PATH";
 	
 	// Message de confirmation
-	hint format ["%1 a été converti en soldat BLUFOR avec des compétences améliorées!", name hostageVIP];
+	systemChat format ["%1 vous a rejoint apportez-le à son point d'extraction", name hostageVIP];
 	
 	// Retourner true pour indiquer le succès
 	true

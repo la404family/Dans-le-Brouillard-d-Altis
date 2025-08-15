@@ -27,10 +27,10 @@ class CfgMusic
         name = "00mortOtage";
         sound[] = {"00mortOtage.ogg", db+5, 1.0};
     };
-    class 00mortConducteur
+    class 00mortConduc
     {
-        name = "00mortConducteur";
-        sound[] = {"00mortConducteur.ogg", db+5, 1.0};
+        name = "00mortConduc";
+        sound[] = {"00mortConduc.ogg", db+5, 1.0};
     };
 };
 class CfgIdentities

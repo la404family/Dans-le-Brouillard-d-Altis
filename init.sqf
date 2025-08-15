@@ -12,31 +12,31 @@
 // helimarker_01, helimarker_02, helimarker_03, helimarker_04 sont les marqueurs des héliports
 // heliBLUFOR est l'hélicoptère BLUFOR
 // heliBLUFORPILOT est le pilote de l'hélicoptère et le chef de groupe
-// player1, player2, player3, player4, player5, player6, player7, player8, player9, player10 sont les joueurs
+// player_1, player_2, player_3, player_4, player_5, player_6, player_7, player_8, player_9, player_10 sont les joueurs
 
+// lancer les fonctions en début de mission
+if (isServer) then {
+    // mettre tous les BLUFOR et le civil du jeu en voix Françaises :
+    [] execVM "fn_BLUFORenFR.sqf";
 
-// lance de la music d'intro
-playMusic "00intro";
-// fn_departAleatoireHeliport est une fontion qui permet de déclancher le départ aléatoire de l'hélicoptère
-[] execVM "fn_departAleatoireHeliport.sqf";
+    // Mettre des noms et prénoms français aux unités BLUFOR
+    [] execVM "fn_changementIdentite.sqf";
 
-// fn_zoneCouvertureDrone est un trigger qui permet de déclancher la zone de couverture du drone
-// [] execVM "fn_zoneCouvertureDrone.sqf";
+    // fn_departAleatoireHeliport est une fontion qui permet de déclancher le départ aléatoire de l'hélicoptère
+    [] execVM "fn_departAleatoireHeliport.sqf";
 
-// fn_OtageDevientBLUFOR est un trigger qui permet de changer le civile en BLUFOR
-// [] execVM "fn_OtageDevientBLUFOR.sqf";
+    // fn_zoneCouvertureDrone est un trigger qui permet de déclancher la zone de couverture du drone
+    // [] execVM "fn_zoneCouvertureDrone.sqf";
 
-// fn_ottageDansVehicule est un trigger qui permet de mettre l'otage d'etre extradé dans le vehicule
-// [] execVM "fn_ottageDansVehicule.sqf";
+    // fn_OtageDevientBLUFOR est un trigger qui permet de changer le civile en BLUFOR
+    // [] execVM "fn_OtageDevientBLUFOR.sqf";
 
-// LOGIQUE GLOBALE DE LA MISSION 
-// si hostageVIP est mort àlors c'est la fin de la mission (pas d'échec mais retour à l'hélicoptère)
+    // fn_ottageDansVehicule est un trigger qui permet de mettre l'otage d'etre extradé dans le vehicule
+    // [] execVM "fn_ottageDansVehicule.sqf";
 
-// mettre tous les BLUFOR et le civil du jeu en voix Françaises :
-[] execVM "fn_BLUFORenFR.sqf";
+    // LOGIQUE GLOBALE DE LA MISSION 
+    // si hostageVIP est mort àlors c'est la fin de la mission (pas d'échec mais retour à l'hélicoptère)
 
-// Mettre des noms et prénoms français aux unités BLUFOR
-[] execVM "fn_changementIdentite.sqf";
-
-// Condition de fin de mission 
-// [] execVM "fn_conditionsFinMission.sqf";
+    // Condition de fin de mission 
+    //[] execVM "fn_conditionsFinMission.sqf";
+}

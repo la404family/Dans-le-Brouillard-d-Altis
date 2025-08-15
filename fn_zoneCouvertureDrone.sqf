@@ -1,7 +1,7 @@
 
 // Empêche les doublons si le script est relancé
 if (missionNamespace getVariable ["droneSurveillance_Running", false]) exitWith {
-    systemChat "Surveillance drone BLUFOR déjà active";
+    systemChat "Surveillance drone déjà active";
 };
 missionNamespace setVariable ["droneSurveillance_Running", true];
 
@@ -10,7 +10,7 @@ sleep 45;
 
 // Message de démarrage
 systemChat "Drone déployé sur la zone...";
-sleep 10;
+sleep 15;
 
 // Variables pour les marqueurs de surveillance
 if (isNil "droneMarkers_BLUFOR") then {
@@ -71,7 +71,7 @@ if (isNil "droneSurveillance_Active") then {
         private _enemyCount = count _enemiesDetected;
         
         if (_enemyCount > 0) then {
-            systemChat format ["Information du drone mise à jour : %1 ", _enemyCount];
+            systemChat format ["Mise à jour DRONE : %1 ", _enemyCount];
             
             {
                 private _enemy = _x;
@@ -90,7 +90,7 @@ if (isNil "droneSurveillance_Active") then {
         } else {
             // S'il n'y a plus d'ennemis détectés, on affiche un message de fin de mission
             systemChat "Information du drone mise à jour : Zone sécurisée";
-            sleep 10;
+            sleep 15;
             systemChat "Fin de la mission pour le drone";
 			// supprimer le waypoint volEnAttente (ou tous les waypoints du groupe du drone)
 			private _droneGroup = group droneBLUFOR;
