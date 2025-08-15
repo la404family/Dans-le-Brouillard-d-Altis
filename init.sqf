@@ -14,6 +14,9 @@
 // heliBLUFORPILOT est le pilote de l'hélicoptère et le chef de groupe
 // player1, player2, player3, player4, player5, player6, player7, player8, player9, player10 sont les joueurs
 
+
+// lance de la music d'intro
+playMusic "00intro";
 // fn_departAleatoireHeliport est une fontion qui permet de déclancher le départ aléatoire de l'hélicoptère
 [] execVM "fn_departAleatoireHeliport.sqf";
 
@@ -34,3 +37,6 @@
 
 // Mettre des noms et prénoms français aux unités BLUFOR
 [] execVM "fn_changementIdentite.sqf";
+
+// Condition de fin de mission 
+// [] execVM "fn_conditionsFinMission.sqf";

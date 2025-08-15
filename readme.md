@@ -11,6 +11,7 @@ Un drone survolera la zone pour détecter les ennemies et les indiquer sur la ca
 - hostageVIP est un civil otage dans le village
 - ConducteurCamionExtractionOtage est le conducteur du camion qui va extraire l'otage
 - camionExtractionOtage est le camion qui va extraire l'otage
+- fn_ottageDansVehicule le déclancher qui dépose le hostageVIP dans le camion
 - directionCamionExtraction est un objet vide dans le jeu qui permet de définir la direction du camion
 - zoneCouvertureDrone est un marker qui permet de définir la zone de couverture du drone
 - droneBLUFOR est le drone qui surveille la zone
@@ -40,3 +41,7 @@ Un drone survolera la zone pour détecter les ennemies et les indiquer sur la ca
 
 - 5.[Changement des identités des BLUFOR](./fn_changementIdentite.sqf)
 - 6.[Départ aléatoire de l'hélicoptère](./fn_departAleatoireHeliport.sqf)
+
+## Les conditions de fin de mission
+
+- 7.[Conditions de fin de mission](./fn_conditionsFinMission.sqf)
