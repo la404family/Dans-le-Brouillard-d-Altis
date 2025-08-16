@@ -13,6 +13,7 @@
 // heliBLUFOR est l'hélicoptère BLUFOR
 // heliBLUFORPILOT est le pilote de l'hélicoptère et le chef de groupe
 // player_1, player_2, player_3, player_4, player_5, player_6, player_7, player_8, player_9, player_10 sont les joueurs
+// equipeAPPUI est l'équipe du pilot heliBLUFORPILOT qui appuie les players 
 
 // lancer les fonctions en début de mission
 if (isServer) then {

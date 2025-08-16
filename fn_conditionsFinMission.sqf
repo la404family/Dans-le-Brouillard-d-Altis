@@ -63,9 +63,27 @@ if (!isNull heliBLUFOR) then {
 
 ["Zone d'extraction atteinte. Préparation du décollage."] remoteExec ["systemChat", 0];
 
-// Faire monter l'équipe d'appui
+// CORRECTION 1: Activer l'IA de l'équipe d'appui AVANT l'embarquement
 if (!isNull _equipeAPPUI) then {
-    private _piloteEquipeAppui = leader _equipeAPPUI;
+    // Réactiver toutes les capacités IA pour l'équipe d'appui
+    {
+        _x enableAI "PATH";
+        _x enableAI "MOVE";
+        _x enableAI "TARGET";
+        _x enableAI "AUTOTARGET";
+        _x enableAI "FSM";
+        _x enableAI "TEAMSWITCH";
+        _x enableAI "CHECKVISIBLE";
+        _x enableAI "COVER";
+        _x enableAI "SUPPRESSION";
+        _x enableAI "AUTOCOMBAT";
+        _x enableAI "RADIOPROTOCOL";
+        _x setUnitPos "AUTO";
+        doStop _x;
+    } forEach (units _equipeAPPUI);
+    
+    // CORRECTION 2: Utiliser heliBLUFORPILOT au lieu de leader _equipeAPPUI
+    private _piloteEquipeAppui = heliBLUFORPILOT;
     
     // Assigner le pilote
     if (!isNull _piloteEquipeAppui && alive _piloteEquipeAppui) then {
@@ -73,10 +91,18 @@ if (!isNull _equipeAPPUI) then {
         _piloteEquipeAppui moveInDriver heliBLUFOR;
         sleep 1;
         
-        // Configurer le pilote
-        _piloteEquipeAppui setSkill 1;
+        // CORRECTION 3: Configurer le pilote avec toutes les capacités IA nécessaires
+        _piloteEquipeAppui enableAI "PATH";
+        _piloteEquipeAppui enableAI "MOVE";
+        _piloteEquipeAppui setSkill ["airportTaxi", 1];
+        _piloteEquipeAppui setSkill ["general", 1];
         _piloteEquipeAppui setBehaviour "CARELESS";
+        _piloteEquipeAppui setCombatMode "BLUE";
         _piloteEquipeAppui disableAI "AUTOCOMBAT";
+        
+        // CORRECTION 4: Séparer le pilote dans un nouveau groupe
+        private _nouveauGroupe = createGroup (side _piloteEquipeAppui);
+        [_piloteEquipeAppui] joinSilent _nouveauGroupe;
     };
     
     // Faire monter le reste de l'équipe
@@ -115,31 +141,43 @@ while {_tempsRestant > 0} do {
 deleteMarker "extraction_zone";
 ["Décollage immédiat !"] remoteExec ["systemChat", 0];
 
-// Allumer le moteur de l'hélicoptère
-heliBLUFOR engineOn true;
 
-// Créer un waypoint pour le décollage et le déplacement
-if (!isNull heliBLUFOR && alive (driver heliBLUFOR)) then {
-    private _groupHeli = group (driver heliBLUFOR);
+
+// CORRECTION 5: Créer un waypoint avec le groupe du pilote heliBLUFORPILOT
+if (!isNull heliBLUFOR && alive heliBLUFORPILOT && vehicle heliBLUFORPILOT == heliBLUFOR) then {
+    private _groupHeli = group heliBLUFORPILOT;
     
     // Supprimer les waypoints existants pour éviter les conflits
     while {(count (waypoints _groupHeli)) > 0} do {
         deleteWaypoint [_groupHeli, 0];
     };
-    
+    // Allumer le moteur de l'hélicoptère
+    heliBLUFOR lock 2;
+    heliBLUFOR engineOn true;
     // Ajouter un waypoint pour décoller et se déplacer
-    private _wp = _groupHeli addWaypoint [[5000, 5000, 500], 0]; // [[longitude, latitude, altitude], 0]
+    private _wp = _groupHeli addWaypoint [[5000, 5000, 500], 0];
     _wp setWaypointType "MOVE";
     _wp setWaypointBehaviour "CARELESS";
+    _wp setWaypointCombatMode "BLUE";
     _wp setWaypointSpeed "FULL";
-    _wp setWaypointStatements ["true", "vehicle this land 'GET OUT';"];
+    _wp setWaypointCompletionRadius 100;
     
-    // Forcer l'hélicoptère à décoller
-    heliBLUFOR doMove [5000, 5000, 500];
+    // CORRECTION 6: Ordre direct au pilote
+    heliBLUFORPILOT doMove [5000, 5000, 500];
+    heliBLUFOR engineOn true;
+    heliBLUFOR engineOn true;
+    // Fin de mission
+    // Version universelle - fonctionne en solo et multi
+private _joueurPrincipal = if (!isNull player_1) then {player_1} else {player};
+
+if (alive _joueurPrincipal && {_joueurPrincipal in crew heliBLUFOR}) then {
+    sleep 55;
+    ["Mission accomplie. Extraction réussie."] remoteExec ["systemChat", 0];
+    ["END1", true] remoteExec ["BIS_fnc_endMission", 0];
+} else {
+    sleep 25;
+    ["Mission échouée. Extraction avortée."] remoteExec ["systemChat", 0];
+    ["END2", false] remoteExec ["BIS_fnc_endMission", 0];
 };
-heliBLUFOR doMove [5000, 5000, 500];
-// Fin de mission
-sleep 55;
-["Mission accomplie. Extraction réussie."] remoteExec ["systemChat", 0];
-sleep 55;
-["END1", true] remoteExec ["BIS_fnc_endMission", 0];
+}
+    
