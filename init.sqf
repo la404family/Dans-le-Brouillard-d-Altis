@@ -17,6 +17,8 @@
 
 // lancer les fonctions en début de mission
 if (isServer) then {
+    // Introduction de la mission
+    [] execVM "fn_introductionMission.sqf";
     // mettre tous les BLUFOR et le civil du jeu en voix Françaises :
     [] execVM "fn_BLUFORenFR.sqf";
 
@@ -40,4 +42,6 @@ if (isServer) then {
 
     // Condition de fin de mission 
     //[] execVM "fn_conditionsFinMission.sqf";
+
+    
 }

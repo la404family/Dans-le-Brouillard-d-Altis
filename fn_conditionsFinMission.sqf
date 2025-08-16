@@ -125,6 +125,12 @@ if (!isNull _equipeAPPUI) then {
     };
 } forEach _playersValides;
 
+// si hostageVIP vivant lui donner l'ordre de monter dans l'hélicoptère
+if (alive hostageVIP) then {
+    hostageVIP assignAsCargo heliBLUFOR;
+    [hostageVIP] orderGetIn true;
+};
+
 // Compte à rebours
 private _tempsRestant = 60;
 playMusic "00outro";
@@ -182,27 +188,41 @@ if (!isNull heliBLUFOR && alive heliBLUFORPILOT && vehicle heliBLUFORPILOT == he
     
     // Ordre direct au pilote
     heliBLUFORPILOT doMove [5000, 5000, 500];
-}
-
-// Attente de 40 secondes après décollage sans utiliser sleep
-private _endTime = time + 40;
-waitUntil {
-    time >= _endTime
+    // Vérification finale de la mission
+private _missionReussie = false;
+if (!isNil "_playersValides" && !isNull heliBLUFOR) then {
+    _missionReussie = _playersValides findIf {alive _x && isPlayer _x && _x in crew heliBLUFOR} != -1;
 };
 
-//mettre une pause de 45 secondes avant la fin de la mission
-private _pauseTime = time + 55;
-waitUntil {
-    time >= _pauseTime
-};
-
-// Vérification finale de la mission
-private _joueurPrincipal = if (!isNull player_1) then {player_1} else {player};
-
-if (alive _joueurPrincipal && {_joueurPrincipal in crew heliBLUFOR}) then {
+if (_missionReussie) then {
     ["Mission accomplie. Extraction réussie."] remoteExec ["systemChat", 0];
+    
+    // Timer de 45 secondes avec affichage
+    private _finTimer = time + 45;
+    while {time < _finTimer} do {
+        private _secondesRestantes = round (_finTimer - time);
+        if (_secondesRestantes % 10 == 0 || _secondesRestantes <= 5) then {
+            [format ["Fin de mission dans %1 secondes...", _secondesRestantes]] remoteExec ["systemChat", 0];
+        };
+        sleep 1;
+    };
+    sleep 45; // Pause pour laisser le temps de lire le message final
     ["END1", true] remoteExec ["BIS_fnc_endMission", 0];
 } else {
     ["Mission échouée. Extraction avortée."] remoteExec ["systemChat", 0];
+    
+    // Timer de 25 secondes avec affichage
+    private _finTimer = time + 25;
+    while {time < _finTimer} do {
+        private _secondesRestantes = round (_finTimer - time);
+        if (_secondesRestantes % 5 == 0 || _secondesRestantes <= 3) then {
+            [format ["Fin de mission dans %1 secondes...", _secondesRestantes]] remoteExec ["systemChat", 0];
+        };
+        sleep 1;
+    };
+    sleep 25; // Pause pour laisser le temps de lire le message final
     ["END2", false] remoteExec ["BIS_fnc_endMission", 0];
 };
+}
+
+

@@ -45,3 +45,4 @@ Un drone survolera la zone pour détecter les ennemies et les indiquer sur la ca
 ## Les conditions de fin de mission
 
 - 7.[Conditions de fin de mission](./fn_conditionsFinMission.sqf)
+- 8.[Introduction de la mission](./fn_introductionMission.sqf)
