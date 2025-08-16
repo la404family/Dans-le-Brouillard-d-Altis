@@ -7,7 +7,7 @@ private _playersValides = _playersArray select {!isNull _x && alive _x && isPlay
 {
     if (isPlayer _x) then {
         ["Retournez au point d'extraction"] remoteExec ["systemChat", _x];
-        
+        // creation d'une tache pour chaque joueur
         private _task = _x createSimpleTask ["extraction"];
         _task setSimpleTaskDescription [
             "Rejoignez l'hélicoptère d'extraction", 
@@ -126,14 +126,33 @@ if (!isNull _equipeAPPUI) then {
 } forEach _playersValides;
 
 // Compte à rebours
-private _tempsRestant = 30;
+private _tempsRestant = 60;
 playMusic "00outro";
 
+// Supprimer les tâches au début du compte à rebours
+{
+    if (isPlayer _x && alive _x) then {
+        _x removeSimpleTask (_x getVariable ["task_extraction", taskNull]);
+    };
+} forEach _playersValides;
+
+private _allUnits = _playersValides + (units _equipeAPPUI);
+private _helicopterLocked = false;
+
 while {_tempsRestant > 0} do {
-    if (_tempsRestant in [30,10,5,3,2,1]) then {
+    if (_tempsRestant in [30, 10, 5, 3, 2, 1]) then {
         private _message = format ["Décollage dans %1 seconde%2", _tempsRestant, if (_tempsRestant > 1) then {"s"} else {""}];
         [_message] remoteExec ["systemChat", 0];
     };
+    
+    // Vérifier si toutes les unités (joueurs + équipe d'appui) sont dans l'hélicoptère
+    if (!_helicopterLocked && {alive _x && !(_x in crew heliBLUFOR)} count _allUnits == 0) then {
+        heliBLUFOR lock true;
+        ["Hélicoptère verrouillé, décollage imminent."] remoteExec ["systemChat", 0];
+        _helicopterLocked = true;
+        _tempsRestant = 0; // Déclencher le décollage immédiatement
+    };
+    
     sleep 1;
     _tempsRestant = _tempsRestant - 1;
 };
@@ -141,8 +160,8 @@ while {_tempsRestant > 0} do {
 deleteMarker "extraction_zone";
 ["Décollage immédiat !"] remoteExec ["systemChat", 0];
 
-// DÉCOLLAGE - Structure corrigée
-heliBLUFOR lock 2;
+// DÉCOLLAGE
+heliBLUFOR lock true; // Verrouillage final
 heliBLUFOR engineOn true;
 
 if (!isNull heliBLUFOR && alive heliBLUFORPILOT && vehicle heliBLUFORPILOT == heliBLUFOR) then {
@@ -163,23 +182,27 @@ if (!isNull heliBLUFOR && alive heliBLUFORPILOT && vehicle heliBLUFORPILOT == he
     
     // Ordre direct au pilote
     heliBLUFORPILOT doMove [5000, 5000, 500];
-    ["Décollage avec pilote IA"] remoteExec ["systemChat", 0];
-} else {
-    // Décollage de secours si pas de pilote
-    heliBLUFOR setVelocity [0, 0, 8];
-    ["Décollage automatique"] remoteExec ["systemChat", 0];
+}
+
+// Attente de 40 secondes après décollage sans utiliser sleep
+private _endTime = time + 40;
+waitUntil {
+    time >= _endTime
 };
 
+//mettre une pause de 45 secondes avant la fin de la mission
+private _pauseTime = time + 55;
+waitUntil {
+    time >= _pauseTime
+};
 
 // Vérification finale de la mission
 private _joueurPrincipal = if (!isNull player_1) then {player_1} else {player};
 
 if (alive _joueurPrincipal && {_joueurPrincipal in crew heliBLUFOR}) then {
     ["Mission accomplie. Extraction réussie."] remoteExec ["systemChat", 0];
-    sleep 55
     ["END1", true] remoteExec ["BIS_fnc_endMission", 0];
 } else {
     ["Mission échouée. Extraction avortée."] remoteExec ["systemChat", 0];
-    sleep 25
     ["END2", false] remoteExec ["BIS_fnc_endMission", 0];
 };
