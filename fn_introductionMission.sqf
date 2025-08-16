@@ -2,7 +2,7 @@
     // ===== CONFIGURATION =====
     private _missionTitle = "DANS LE BROUILLARD D'ALTIS";
     private _missionAuthor = "Par Kevin Du Chevreuil";
-    private _missionType = "Opération de d'extraction";
+    private _missionType = "Opération d'extraction";
     private _heli = heliBLUFOR;
     private _marker = "marker_0";
 

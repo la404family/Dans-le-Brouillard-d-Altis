@@ -43,5 +43,6 @@ if (isServer) then {
     // Condition de fin de mission 
     //[] execVM "fn_conditionsFinMission.sqf";
 
-    
+    // Condition d'échec de la mission
+    [] execVM "fn_echecMission.sqf";
 }

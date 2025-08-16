@@ -21,28 +21,30 @@ Un drone survolera la zone pour détecter les ennemies et les indiquer sur la ca
 - helimarker_01, helimarker_02, helimarker_03, helimarker_04 sont les marqueurs des héliports
 - heliBLUFOR est l'hélicoptère BLUFOR
 - heliBLUFORPILOT est le pilote de l'hélicoptère et le chef de groupe
-- player1, player2, player3, player4, player5, player6, player7, player8, player9, player10 sont les joueurs
+- player_1, player_2, player_3, player_4, player_5, player_6, player_7, player_8, player_9, player_10 sont les joueurs
+- equipeAPPUI est l'équipe du pilot heliBLUFORPILOT qui appuie les players
 
-## Mise en place de la mission [1er partie]
+### Mise en place de la mission [1er partie]
 
 - 1.[Conversion d'un civil en soldat BLUFOR](./fn_OtageDevientBLUFOR.sqf)
 - 2.[Extraction de l'otage dans un véhicule](./fn_ottageDansVehicule.sqf)
 
 [Regarder la vidéo sur YouTube](https://www.youtube.com/shorts/S-8VCvEvptc)
 
-## Ajout de la zone de couverture du drone [2ème partie]
+### Ajout de la zone de couverture du drone [2ème partie]
 
 - 3.[Mettre les voix des BLUFOR et des civils en français](./fn_BLUFORenFR.sqf)
 - 4.[Ajout de la zone de couverture du drone](./fn_zoneCouvertureDrone.sqf)
 
 [Regarder la vidéo sur YouTube](https://www.youtube.com/shorts/kc7yryzdNM4)
 
-## Ajout d'un lieu aléatoire pour l'atterrissage de départ [3ème partie]
+### Ajout d'un lieu aléatoire pour l'atterrissage de départ [3ème partie]
 
 - 5.[Changement des identités des BLUFOR](./fn_changementIdentite.sqf)
 - 6.[Départ aléatoire de l'hélicoptère](./fn_departAleatoireHeliport.sqf)
 
-## Les conditions de fin de mission
+### Intro et fin de mission [4ème partie]
 
 - 7.[Conditions de fin de mission](./fn_conditionsFinMission.sqf)
 - 8.[Introduction de la mission](./fn_introductionMission.sqf)
+- 9.[Condition d'échec de la mission](./fn_echecMission.sqf)

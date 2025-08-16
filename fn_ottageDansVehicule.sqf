@@ -19,11 +19,5 @@ camionExtractionOtage setFuel 1;
 // Faire conduire le camion à toute vitesse vers directionCamionExtraction
 ConducteurCamionExtractionOtage doMove (getPos directionCamionExtraction);
 camionExtractionOtage setSpeedMode "FULL";
-
-// Lorsque le camion est arrivé à la destination, supprimer le conducteur du camion, le camion et l'otage
-waitUntil {camionExtractionOtage distance directionCamionExtraction < 50};
-deleteVehicle ConducteurCamionExtractionOtage;
-deleteVehicle camionExtractionOtage;
-deleteVehicle hostageVIP;
 // Optionnel : Message de confirmation
 systemChat "L'otage est en sécurité, continuez votre mission";
