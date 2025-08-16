@@ -63,7 +63,7 @@ if (!isNull heliBLUFOR) then {
 
 ["Zone d'extraction atteinte. Préparation du décollage."] remoteExec ["systemChat", 0];
 
-// CORRECTION 1: Activer l'IA de l'équipe d'appui AVANT l'embarquement
+// Activer l'IA de l'équipe d'appui AVANT l'embarquement
 if (!isNull _equipeAPPUI) then {
     // Réactiver toutes les capacités IA pour l'équipe d'appui
     {
@@ -82,7 +82,7 @@ if (!isNull _equipeAPPUI) then {
         doStop _x;
     } forEach (units _equipeAPPUI);
     
-    // CORRECTION 2: Utiliser heliBLUFORPILOT au lieu de leader _equipeAPPUI
+    // Utiliser heliBLUFORPILOT
     private _piloteEquipeAppui = heliBLUFORPILOT;
     
     // Assigner le pilote
@@ -91,7 +91,7 @@ if (!isNull _equipeAPPUI) then {
         _piloteEquipeAppui moveInDriver heliBLUFOR;
         sleep 1;
         
-        // CORRECTION 3: Configurer le pilote avec toutes les capacités IA nécessaires
+        // Configurer le pilote avec toutes les capacités IA nécessaires
         _piloteEquipeAppui enableAI "PATH";
         _piloteEquipeAppui enableAI "MOVE";
         _piloteEquipeAppui setSkill ["airportTaxi", 1];
@@ -100,7 +100,7 @@ if (!isNull _equipeAPPUI) then {
         _piloteEquipeAppui setCombatMode "BLUE";
         _piloteEquipeAppui disableAI "AUTOCOMBAT";
         
-        // CORRECTION 4: Séparer le pilote dans un nouveau groupe
+        // Séparer le pilote dans un nouveau groupe
         private _nouveauGroupe = createGroup (side _piloteEquipeAppui);
         [_piloteEquipeAppui] joinSilent _nouveauGroupe;
     };
@@ -141,9 +141,10 @@ while {_tempsRestant > 0} do {
 deleteMarker "extraction_zone";
 ["Décollage immédiat !"] remoteExec ["systemChat", 0];
 
+// DÉCOLLAGE - Structure corrigée
+heliBLUFOR lock 2;
+heliBLUFOR engineOn true;
 
-
-// CORRECTION 5: Créer un waypoint avec le groupe du pilote heliBLUFORPILOT
 if (!isNull heliBLUFOR && alive heliBLUFORPILOT && vehicle heliBLUFORPILOT == heliBLUFOR) then {
     private _groupHeli = group heliBLUFORPILOT;
     
@@ -151,9 +152,7 @@ if (!isNull heliBLUFOR && alive heliBLUFORPILOT && vehicle heliBLUFORPILOT == he
     while {(count (waypoints _groupHeli)) > 0} do {
         deleteWaypoint [_groupHeli, 0];
     };
-    // Allumer le moteur de l'hélicoptère
-    heliBLUFOR lock 2;
-    heliBLUFOR engineOn true;
+    
     // Ajouter un waypoint pour décoller et se déplacer
     private _wp = _groupHeli addWaypoint [[5000, 5000, 500], 0];
     _wp setWaypointType "MOVE";
@@ -162,22 +161,25 @@ if (!isNull heliBLUFOR && alive heliBLUFORPILOT && vehicle heliBLUFORPILOT == he
     _wp setWaypointSpeed "FULL";
     _wp setWaypointCompletionRadius 100;
     
-    // CORRECTION 6: Ordre direct au pilote
+    // Ordre direct au pilote
     heliBLUFORPILOT doMove [5000, 5000, 500];
-    heliBLUFOR engineOn true;
-    heliBLUFOR engineOn true;
-    // Fin de mission
-    // Version universelle - fonctionne en solo et multi
+    ["Décollage avec pilote IA"] remoteExec ["systemChat", 0];
+} else {
+    // Décollage de secours si pas de pilote
+    heliBLUFOR setVelocity [0, 0, 8];
+    ["Décollage automatique"] remoteExec ["systemChat", 0];
+};
+
+
+// Vérification finale de la mission
 private _joueurPrincipal = if (!isNull player_1) then {player_1} else {player};
 
 if (alive _joueurPrincipal && {_joueurPrincipal in crew heliBLUFOR}) then {
-    sleep 55;
     ["Mission accomplie. Extraction réussie."] remoteExec ["systemChat", 0];
+    sleep 55
     ["END1", true] remoteExec ["BIS_fnc_endMission", 0];
 } else {
-    sleep 25;
     ["Mission échouée. Extraction avortée."] remoteExec ["systemChat", 0];
+    sleep 25
     ["END2", false] remoteExec ["BIS_fnc_endMission", 0];
 };
-}
-    
