@@ -93,7 +93,7 @@ fnc_stopRegroupLoop = {
 briefingActive = false;
 briefingDisplay = displayNull;
 
-// Fonction pour créer le briefing à la demande (INTERFACE PERSONNALISÉE)
+// Fonction pour créer le briefing à la demande (INTERFACE PERSONNALISÉE AGRANDIE)
 fnc_createBriefing = {
     if !(call fnc_isPlayerLeader) exitWith {
         hint "Seul le leader peut accéder au briefing";
@@ -114,46 +114,39 @@ fnc_createBriefing = {
         _display = findDisplay 46 createDisplay "RscDisplayEmpty";
         briefingDisplay = _display;
         
-        // Background semi-transparent
+        // Background semi-transparent AGRANDI
         _background = _display ctrlCreate ["RscText", 1000];
-        _background ctrlSetPosition [0.25, 0.15, 0.5, 0.7];
-        _background ctrlSetBackgroundColor [0, 0, 0, 0.8];
+        _background ctrlSetPosition [0.15, 0.1, 0.7, 0.8]; // Plus large et plus haut
+        _background ctrlSetBackgroundColor [0, 0, 0, 0.85];
         _background ctrlCommit 0;
         
-        // Titre du briefing
+        // Bordure décorative
+        _border = _display ctrlCreate ["RscFrame", 1004];
+        _border ctrlSetPosition [0.15, 0.1, 0.7, 0.8];
+        _border ctrlCommit 0;
+        
+        // Titre du briefing AGRANDI
         _title = _display ctrlCreate ["RscStructuredText", 1001];
-        _title ctrlSetPosition [0.27, 0.18, 0.46, 0.08];
-        _title ctrlSetStructuredText parseText "<t size='1.5' color='#FF0000' align='center'>MISSION D'EXTRACTION</t>";
+        _title ctrlSetPosition [0.18, 0.13, 0.64, 0.1]; // Plus large
+        _title ctrlSetStructuredText parseText "<t size='2' color='#FF0000' align='center'>MISSION D'EXTRACTION</t>";
         _title ctrlCommit 0;
         
-        // Contenu principal du briefing
+        // Contenu principal du briefing AGRANDI
         _content = _display ctrlCreate ["RscStructuredText", 1002];
-        _content ctrlSetPosition [0.27, 0.28, 0.46, 0.45];
+        _content ctrlSetPosition [0.18, 0.25, 0.64, 0.55]; // Beaucoup plus grand
         _content ctrlSetStructuredText parseText "
-        <t size='1.1' color='#FFFF00'>SITUATION :</t><br/>
-        Un ancien soldat a été kidnappé par des forces ennemies. L'<t color='#00FF00'>otage a été localisé</t> dans une zone contrôlée par l'ennemi.<br/><br/>
-        Nous attendons votre présence pour déployer un drone dans zone qui vous indiquera les positions ennemies.
-        <t size='1.1' color='#FFFF00'>OBJECTIF :</t><br/>
-        Récupérer l'ancien soldat kidnappé et le ramener sain et sauf à son point d'extraction. Un <t color='#00FF00'>camion allié</t> vous attend au point d'extraction (civil).<br/><br/>
-        Si l'<t color='#00FF00'>allié</t> est repéré, prennez l'ancien soldat avec vous dans l'hélicoptère.
-        <t size='1.1' color='#FFFF00'>COMMANDEMENT :</t><br/>
-        Des commandes d'action sont disponibles pour le leader du groupe :<br/>
-        • <t color='#00FF00'>Motiver les troupes</t> : Regroupement automatique (5 cycles)<br/>
-        • <t color='#00FF00'>Cesser la motivation</t> : Arrêt du regroupement<br/>
-        • <t color='#00FF00'>Soignez vous !</t> : Ordre de soins aux IA<br/><br/>
-        
-        <t size='1.1' color='#FFFF00'>INSTRUCTIONS :</t><br/>
-        - Localisez et escortez l'otage<br/>
-        - Escortez l'otage jusqu'au point d'extraction <br/>
-        - Restez vigilants la zone de détection du drone est limitée<br/><br/>
-        
-        <t size='1.2' color='#FF6600'>Bonne chance, oldats!</t>
-        ";
+        <t size='1.2' color='#FFFF00'>Renseignements opérationnels</t><br/>
+- Objectif principal : Localiser et escorter l'otage jusqu'au point d'extraction (P.E.) civil - voir GPS.<br/>
+- Appui tactique : Un drone de reconnaissance est en attente de votre arrivée pour déploiement sur zone.<br/>
+- Précaution : La portée de détection du drone est limitée, restez en alerte maximale.<br/>
+- Menace : Anticipez des contre-attaques ennemies potentielles.<br/>
+- Plan de contingence : Si l'allié au P.E. civil est neutralisé, évacuez l'otage vers le P.E. militaire (soldats) - voir GPS.<br/>
+- Commandement : Des commandes d'action sont disponibles pour la gestion tactique de l'escouade.<br/><br/>";
         _content ctrlCommit 0;
         
-        // Bouton Fermer
+        // Bouton Fermer REPOSITIONNÉ
         _closeBtn = _display ctrlCreate ["RscButton", 1003];
-        _closeBtn ctrlSetPosition [0.6, 0.75, 0.12, 0.06];
+        _closeBtn ctrlSetPosition [0.7, 0.82, 0.12, 0.06]; // Repositionné en bas à droite
         _closeBtn ctrlSetText "FERMER";
         _closeBtn ctrlSetTextColor [1, 1, 1, 1];
         _closeBtn ctrlSetBackgroundColor [0.8, 0.2, 0.2, 0.8];
@@ -175,7 +168,6 @@ fnc_createBriefing = {
             }
         }];
         
-        hint "Briefing affiché ! (ESC ou bouton FERMER pour fermer)";
     };
 };
 
@@ -222,7 +214,7 @@ if (call fnc_isPlayerLeader) then {
     
     // Action pour afficher le briefing (PRIORITÉ HAUTE)
     player addAction [
-        "<t color='#00FFFF'>Afficher/Fermer briefing</t>",
+        "<t color='#00FFFF'>📋 Afficher le briefing</t>",
         {[] call fnc_createBriefing;},
         [],
         10, // Priorité élevée
@@ -268,7 +260,10 @@ if (call fnc_isPlayerLeader) then {
         "call fnc_isPlayerLeader"
     ];
     
-} 
+    
+} else {
+    hint "Vous n'êtes pas le leader du groupe";
+};
 
 // ========================================
 // EVENT HANDLERS POUR GESTION AVANCÉE
@@ -280,6 +275,7 @@ if (call fnc_isPlayerLeader) then {
         // Si le joueur n'est plus leader et qu'un regroupement est actif
         if (!(call fnc_isPlayerLeader) && (missionNamespace getVariable ["RegroupLoopActive", false])) then {
             missionNamespace setVariable ["RegroupLoopActive", false];
+            hint "Regroupement arrêté : leadership perdu";
         };
         sleep 5;
     };

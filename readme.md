@@ -48,3 +48,8 @@ Un drone survolera la zone pour détecter les ennemies et les indiquer sur la ca
 - 7.[Conditions de fin de mission](./fn_conditionsFinMission.sqf)
 - 8.[Introduction de la mission](./fn_introductionMission.sqf)
 - 9.[Condition d'échec de la mission](./fn_echecMission.sqf)
+
+### Ajout des actions de commandement [5ème partie]
+
+- 10.[Création des actions de commandement](./fn_buttonActions.sqf)
+- 11.[Ajout d'une lumière dans l'hélicoptère](./fn_lumiereHeli.sqf)

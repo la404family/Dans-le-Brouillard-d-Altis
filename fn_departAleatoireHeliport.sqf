@@ -105,8 +105,8 @@ _wp setWaypointStatements [
     
     // Mettre à jour le marqueur
     _selectedMarker setMarkerType "mil_end";
-    _selectedMarker setMarkerText "Ext. (Soldats)";
-    _selectedMarker setMarkerColor "ColorBLUFOR";
+    _selectedMarker setMarkerText "P.E (Soldats)";
+   
     
     // Gestion du comportement en cas d'attaque pour les deux groupes
     {
