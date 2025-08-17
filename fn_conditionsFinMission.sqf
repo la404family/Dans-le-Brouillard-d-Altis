@@ -186,7 +186,7 @@ deleteMarker "extraction_zone";
 ["Décollage forcé !"] remoteExec ["systemChat", 0];
 
 // VERROUILLAGE FINAL ET DÉCOLLAGE FORCÉ
-heliBLUFOR lock true;
+heliBLUFOR lock 0;
 heliBLUFOR engineOn true;
 
 // FORCER LE DÉCOLLAGE AVEC DIRECTION
@@ -196,7 +196,7 @@ if (!isNull _piloteChoisi && alive _piloteChoisi && !isNull heliBLUFOR && !isNul
         deleteWaypoint [_groupHeli, 0];
     };
     private _destination = getPos directionDroneFinDeMission;
-    _destination set [2, (_destination select 2) + 500];
+    _destination set [2, (_destination select 2) + 200]; // 200 = altitude de vol
     private _wp = _groupHeli addWaypoint [_destination, 0];
     _wp setWaypointType "MOVE";
     _wp setWaypointBehaviour "CARELESS";
@@ -221,8 +221,8 @@ if (!isNil "_playersValides" && !isNull heliBLUFOR) then {
     _missionReussie = _playersValides findIf {alive _x && isPlayer _x && _x in crew heliBLUFOR} != -1;
 };
 
-// TIMER DE 45 SECONDES APRÈS LE DÉCOLLAGE
-private _finTimer = time + 45;
+// TIMER DE 55 SECONDES APRÈS LE DÉCOLLAGE
+private _finTimer = time + 55;
 private _destination = getPos directionDroneFinDeMission;
 _destination set [2, (_destination select 2) + 500];
 

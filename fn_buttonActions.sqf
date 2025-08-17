@@ -108,68 +108,95 @@ fnc_createBriefing = {
     briefingActive = true;
     
     // Créer l'affichage du briefing
-    [] spawn {
-        disableSerialization;
+[] spawn {
+    disableSerialization;
+    
+    // Créer le display principal
+    _display = findDisplay 46 createDisplay "RscDisplayEmpty";
+    briefingDisplay = _display;
+    
+    // Configuration des dimensions et positions
+    _windowW = 0.7;  // Largeur réduite pour un meilleur aspect
+    _windowH = 0.8;  // Hauteur réduite
+    _windowX = (1 - _windowW) / 2;  // Centré horizontalement
+    _windowY = (1 - _windowH) / 2;  // Centré verticalement
+    
+    // Background semi-transparent avec bordure arrondie
+    _background = _display ctrlCreate ["RscText", 1000];
+    _background ctrlSetPosition [_windowX, _windowY, _windowW, _windowH];
+    _background ctrlSetBackgroundColor [0.1, 0.1, 0.1, 0.9];
+    _background ctrlCommit 0;
+    
+    // Bordure décorative stylisée
+    _border = _display ctrlCreate ["RscFrame", 1004];
+    _border ctrlSetPosition [_windowX, _windowY, _windowW, _windowH];
+    _border ctrlSetTextColor [0.2, 0.8, 0.2, 0.7];
+    _border ctrlCommit 0;
+    
+    // Titre du briefing avec effet de gradient
+    _title = _display ctrlCreate ["RscStructuredText", 1001];
+    _title ctrlSetPosition [_windowX + 0.02, _windowY + 0.02, _windowW - 0.04, 0.1];
+    _title ctrlSetStructuredText parseText "
+        <t size='1.4' color='#32F842' shadow='2' align='center' font='PuristaBold'>
+            <t color='#45FF6D'>MISSION</t> D'<t color='#45FF6D'>EXTRACTION</t>
+        </t>";
+    _title ctrlCommit 0;
+    
+    // Séparateur sous le titre
+    _separator = _display ctrlCreate ["RscText", 1005];
+    _separator ctrlSetPosition [_windowX + 0.05, _windowY + 0.12, _windowW - 0.1, 0.002];
+    _separator ctrlSetBackgroundColor [0.2, 0.8, 0.2, 0.6];
+    _separator ctrlCommit 0;
+    
+    // Contenu principal du briefing avec meilleure mise en page
+    _content = _display ctrlCreate ["RscStructuredText", 1002];
+    _content ctrlSetPosition [_windowX + 0.05, _windowY + 0.15, _windowW - 0.1, _windowH - 0.25];
+    _content ctrlSetStructuredText parseText "
+        <t size='1.1' color='#FFD700' font='PuristaSemiBold'>RENSEIGNEMENTS OPÉRATIONNELS</t><br/><br/>
         
-        // Créer le display principal
-        _display = findDisplay 46 createDisplay "RscDisplayEmpty";
-        briefingDisplay = _display;
+        <t size='0.95' color='#FFFFFF' align='left'>
+        <img size='0.8' image='\A3\ui_f\data\map\markers\military\dot_ca.paa'/> <t color='#45FF6D'>Objectif principal:</t> Localiser et escorter l'otage jusqu'au point d'extraction (P.E.) civil - voir GPS.<br/><br/>
         
-        // Background semi-transparent 
-        _background = _display ctrlCreate ["RscText", 1000];
-        _background ctrlSetPosition [0.15, 0.1, 0.7, 0.8]; // Plus large et plus haut
-        _background ctrlSetBackgroundColor [0, 0, 0, 0.85];
-        _background ctrlCommit 0;
+        <img size='0.8' image='\A3\ui_f\data\map\markers\military\dot_ca.paa'/> <t color='#45FF6D'>Objectif secondaire:</t> Si l'allié au P.E. civil est neutralisé, évacuez l'otage vers le P.E. militaire (soldats) - voir GPS.<br/><br/>
         
-        // Bordure décorative
-        _border = _display ctrlCreate ["RscFrame", 1004];
-        _border ctrlSetPosition [0.15, 0.1, 0.7, 0.8];
-        _border ctrlCommit 0;
+        <img size='0.8' image='\A3\ui_f\data\map\markers\military\dot_ca.paa'/> <t color='#45FF6D'>Support aérien:</t> Un drone de reconnaissance est en attente de votre arrivée pour déploiement sur zone.<br/><br/>
         
-        // Titre du briefing 
-        _title = _display ctrlCreate ["RscStructuredText", 1001];
-        _title ctrlSetPosition [0.18, 0.13, 0.64, 0.1]; // Plus large
-        _title ctrlSetStructuredText parseText "<t size='2' color='#FF0000' align='center'>MISSION D'EXTRACTION</t>";
-        _title ctrlCommit 0;
+        <img size='0.8' image='\A3\ui_f\data\map\markers\military\warning_ca.paa'/> <t color='#FFA500'>Attention:</t> La portée de détection du drone est limitée (Zone orange sur GPS), restez en alerte maximale.<br/><br/>
         
-        // Contenu principal du briefing
-        _content = _display ctrlCreate ["RscStructuredText", 1002];
-        _content ctrlSetPosition [0.18, 0.25, 0.64, 0.55]; // Beaucoup plus grand
-        _content ctrlSetStructuredText parseText "
-        <t size='1.2' color='#FFFF00'>Renseignements opérationnels</t><br/>
-- Localiser et escorter l'otage jusqu'au point d'extraction (P.E.) civil - voir GPS.<br/>
-- Un drone de reconnaissance est en attente de votre arrivée pour déploiement sur zone.<br/>
-- La portée de détection du drone est limitée, restez en alerte maximale.<br/>
-- L'hélicoptère est un arsenal si vous avez besoin de changer vos équipements.<br/>
-- Si l'allié au P.E. civil est neutralisé, évacuez l'otage vers le P.E. militaire (soldats) - voir GPS.<br/>
-- Des commandes d'action sont disponibles pour la gestion tactique de l'escouade.<br/><br/>";
-        _content ctrlCommit 0;
+        <img size='0.8' image='\A3\ui_f\data\map\markers\military\pickup_ca.paa'/> <t color='#45FF6D'>Ressources:</t> L'hélicoptère est un arsenal si vous avez besoin de changer vos équipements.<br/><br/>
         
-        // Bouton Fermer REPOSITIONNÉ
-        _closeBtn = _display ctrlCreate ["RscButton", 1003];
-        _closeBtn ctrlSetPosition [0.7, 0.82, 0.12, 0.06]; // Repositionné en bas à droite
-        _closeBtn ctrlSetText "FERMER";
-        _closeBtn ctrlSetTextColor [1, 1, 1, 1];
-        _closeBtn ctrlSetBackgroundColor [0.8, 0.2, 0.2, 0.8];
-        _closeBtn ctrlCommit 0;
+        <img size='0.8' image='\A3\ui_f\data\map\markers\military\join_ca.paa'/> <t color='#45FF6D'>Commandes:</t> Des commandes d'action sont disponibles pour la gestion tactique de l'escouade.<br/><br/>
         
-        // Action du bouton fermer
-        _closeBtn ctrlAddEventHandler ["ButtonClick", {
+        <img size='0.8' image='\A3\ui_f\data\map\markers\military\group_ca.paa'/> <t color='#FFA500'>Extraction:</t> Tous les membres de groupe doivent être dans l'hélicoptère lors de l'extraction.
+        </t>";
+    _content ctrlCommit 0;
+    
+    // Bouton Fermer stylisé
+    _closeBtn = _display ctrlCreate ["RscButton", 1003];
+    _closeBtn ctrlSetPosition [_windowX + _windowW - 0.15, _windowY + _windowH - 0.08, 0.12, 0.06];
+    _closeBtn ctrlSetText "FERMER";
+    _closeBtn ctrlSetFont "PuristaBold";
+    _closeBtn ctrlSetTextColor [1, 1, 1, 1];
+    _closeBtn ctrlSetBackgroundColor [0.2, 0.2, 0.2, 0.8];
+    _closeBtn ctrlSetActiveColor [0.8, 0.2, 0.2, 1];
+    _closeBtn ctrlCommit 0;
+    
+    // Action du bouton fermer
+    _closeBtn ctrlAddEventHandler ["ButtonClick", {
+        [] call fnc_closeBriefing;
+    }];
+    
+    // Fermeture automatique avec ESC
+    _display displayAddEventHandler ["KeyDown", {
+        params ["_display", "_key"];
+        if (_key == 1) then { // ESC key
             [] call fnc_closeBriefing;
-        }];
-        
-        // Fermeture automatique avec ESC
-        _display displayAddEventHandler ["KeyDown", {
-            params ["_display", "_key"];
-            if (_key == 1) then { // ESC key
-                [] call fnc_closeBriefing;
-                true
-            } else {
-                false
-            }
-        }];
-        
-    };
+            true
+        } else {
+            false
+        }
+    }];
+};
 };
 
 // Fonction pour fermer le briefing
