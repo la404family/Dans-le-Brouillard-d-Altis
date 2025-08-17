@@ -37,6 +37,9 @@ if (isServer) then {
     // fn_ottageDansVehicule est un trigger qui permet de mettre l'otage d'etre extradé dans le vehicule
     // [] execVM "fn_ottageDansVehicule.sqf";
 
+    // fn_auPas.sqf est une fonction qui redonne du moral aux troupes
+     [] execVM "fn_buttonActions.sqf";
+
     // LOGIQUE GLOBALE DE LA MISSION 
     // si hostageVIP est mort àlors c'est la fin de la mission (pas d'échec mais retour à l'hélicoptère)
 
@@ -45,4 +48,7 @@ if (isServer) then {
 
     // Condition d'échec de la mission
     [] execVM "fn_echecMission.sqf";
-}
+
+    // Lumière dans heliBLUFOR
+    [] execVM "fn_lumiereHeli.sqf";
+};

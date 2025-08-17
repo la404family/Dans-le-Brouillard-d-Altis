@@ -220,6 +220,8 @@ if (_missionReussie) then {
         };
         sleep 1;
     };
+    // désactiver les touches clavier pour tous joueurs
+    // A FAIRE !!
     sleep 25; // Pause pour laisser le temps de lire le message final
     ["END2", false] remoteExec ["BIS_fnc_endMission", 0];
 };

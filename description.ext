@@ -50,7 +50,7 @@ class CfgIdentities
         name = "Alexandre Martin";
         speaker = "Male01FRE";
         face = "WhiteHead_01";
-        pitch = 0.7;
+        pitch = 0.8;
     };
     
     class FrenchSoldier02
@@ -251,7 +251,7 @@ class CfgIdentities
         name = "Amadou Kanté";
         speaker = "Male01FRE";
         face = "AfricanHead_03";
-        pitch = 1.05;
+        pitch = 1.0;
     };
     
     class FrenchSoldier27

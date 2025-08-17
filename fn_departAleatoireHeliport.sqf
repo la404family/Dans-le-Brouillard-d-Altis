@@ -158,5 +158,4 @@ _wp setWaypointStatements [
 	_x setSkill ["commanding", 0.6];         // Capacité de commandement
 	_x setSkill ["general", 0.8];            // Compétence générale
     } forEach _playerUnits;
-
 };
