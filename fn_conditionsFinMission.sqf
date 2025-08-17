@@ -219,9 +219,27 @@ if (_missionReussie) then {
             [format ["Fin de mission dans %1 secondes...", _secondesRestantes]] remoteExec ["systemChat", 0];
         };
         sleep 1;
+        // Supprimer les waypoints existants pour éviter les conflits
+    while {(count (waypoints _groupHeli)) > 0} do {
+        deleteWaypoint [_groupHeli, 0];
+    };
+    
+    // Ajouter un waypoint pour décoller et se déplacer
+    private _wp = _groupHeli addWaypoint [[5000, 5000, 500], 0];
+    _wp setWaypointType "MOVE";
+    _wp setWaypointBehaviour "CARELESS";
+    _wp setWaypointCombatMode "BLUE";
+    _wp setWaypointSpeed "FULL";
+    _wp setWaypointCompletionRadius 100;
+        // Ordre direct au pilote
+    heliBLUFORPILOT doMove [5000, 5000, 500];
     };
     // désactiver les touches clavier pour tous joueurs
-    // A FAIRE !!
+    {
+        if (isPlayer _x) then {
+            _x enableSimulation false;
+        };
+    } forEach _playersValides;
     sleep 25; // Pause pour laisser le temps de lire le message final
     ["END2", false] remoteExec ["BIS_fnc_endMission", 0];
 };

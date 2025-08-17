@@ -1,7 +1,3 @@
-// ========================================
-// SYSTÈME DE BRIEFING ET COMMANDES - VERSION CORRIGÉE
-// ========================================
-
 // Initialisation de la variable globale pour contrôler la boucle
 missionNamespace setVariable ["RegroupLoopActive", false];
 
@@ -53,7 +49,7 @@ fnc_startRegroupLoop = {
     
     // Lancer la boucle dans un thread séparé
     [] spawn {
-        for "_i" from 1 to 5 do {
+        for "_i" from 1 to 2 do {
             // Vérifier si la boucle doit continuer
             if !(missionNamespace getVariable ["RegroupLoopActive", false]) exitWith {};
             
@@ -67,7 +63,7 @@ fnc_startRegroupLoop = {
             
             // Afficher le compteur (optionnel)
             if (missionNamespace getVariable ["RegroupLoopActive", false]) then {
-                hintSilent format ["Motivation des troupes: %1/5", _i];
+                hintSilent format ["Motivation des troupes: %1/2", _i];
             };
             
             sleep 15;
@@ -75,7 +71,12 @@ fnc_startRegroupLoop = {
         
         // Fin automatique après 5 cycles
         missionNamespace setVariable ["RegroupLoopActive", false];
-        hint "Cycle de motivation terminé";
+        // dofollow a tous
+        {
+            if (!isPlayer _x && alive _x) then {
+                _x doFollow player;
+            };
+        } forEach (units group player);
     };
 };
 
@@ -114,7 +115,7 @@ fnc_createBriefing = {
         _display = findDisplay 46 createDisplay "RscDisplayEmpty";
         briefingDisplay = _display;
         
-        // Background semi-transparent AGRANDI
+        // Background semi-transparent 
         _background = _display ctrlCreate ["RscText", 1000];
         _background ctrlSetPosition [0.15, 0.1, 0.7, 0.8]; // Plus large et plus haut
         _background ctrlSetBackgroundColor [0, 0, 0, 0.85];
@@ -125,23 +126,23 @@ fnc_createBriefing = {
         _border ctrlSetPosition [0.15, 0.1, 0.7, 0.8];
         _border ctrlCommit 0;
         
-        // Titre du briefing AGRANDI
+        // Titre du briefing 
         _title = _display ctrlCreate ["RscStructuredText", 1001];
         _title ctrlSetPosition [0.18, 0.13, 0.64, 0.1]; // Plus large
         _title ctrlSetStructuredText parseText "<t size='2' color='#FF0000' align='center'>MISSION D'EXTRACTION</t>";
         _title ctrlCommit 0;
         
-        // Contenu principal du briefing AGRANDI
+        // Contenu principal du briefing
         _content = _display ctrlCreate ["RscStructuredText", 1002];
         _content ctrlSetPosition [0.18, 0.25, 0.64, 0.55]; // Beaucoup plus grand
         _content ctrlSetStructuredText parseText "
         <t size='1.2' color='#FFFF00'>Renseignements opérationnels</t><br/>
-- Objectif principal : Localiser et escorter l'otage jusqu'au point d'extraction (P.E.) civil - voir GPS.<br/>
-- Appui tactique : Un drone de reconnaissance est en attente de votre arrivée pour déploiement sur zone.<br/>
-- Précaution : La portée de détection du drone est limitée, restez en alerte maximale.<br/>
-- Menace : Anticipez des contre-attaques ennemies potentielles.<br/>
-- Plan de contingence : Si l'allié au P.E. civil est neutralisé, évacuez l'otage vers le P.E. militaire (soldats) - voir GPS.<br/>
-- Commandement : Des commandes d'action sont disponibles pour la gestion tactique de l'escouade.<br/><br/>";
+- Localiser et escorter l'otage jusqu'au point d'extraction (P.E.) civil - voir GPS.<br/>
+- Un drone de reconnaissance est en attente de votre arrivée pour déploiement sur zone.<br/>
+- La portée de détection du drone est limitée, restez en alerte maximale.<br/>
+- L'hélicoptère est un arsenal si vous avez besoin de changer vos équipements.<br/>
+- Si l'allié au P.E. civil est neutralisé, évacuez l'otage vers le P.E. militaire (soldats) - voir GPS.<br/>
+- Des commandes d'action sont disponibles pour la gestion tactique de l'escouade.<br/><br/>";
         _content ctrlCommit 0;
         
         // Bouton Fermer REPOSITIONNÉ
@@ -214,7 +215,7 @@ if (call fnc_isPlayerLeader) then {
     
     // Action pour afficher le briefing (PRIORITÉ HAUTE)
     player addAction [
-        "<t color='#00FFFF'>📋 Afficher le briefing</t>",
+        "<t color='#00FFFF'>Afficher le briefing</t>",
         {[] call fnc_createBriefing;},
         [],
         10, // Priorité élevée
@@ -233,7 +234,7 @@ if (call fnc_isPlayerLeader) then {
         true,
         true,
         "",
-        "call fnc_isPlayerLeader && !(missionNamespace getVariable ['RegroupLoopActive', false])"
+        "call fnc_isPlayerLeader"
     ];
     
     // Action pour désactiver le regroupement
@@ -245,7 +246,7 @@ if (call fnc_isPlayerLeader) then {
         true,
         true,
         "",
-        "call fnc_isPlayerLeader && (missionNamespace getVariable ['RegroupLoopActive', false])"
+        "call fnc_isPlayerLeader"
     ];
     
     // Action pour ordonner les soins
@@ -286,5 +287,3 @@ player addEventHandler ["Killed", {
     missionNamespace setVariable ["RegroupLoopActive", false];
     [] call fnc_closeBriefing; // Fermer le briefing si ouvert
 }];
-
-hint "Système de briefing initialisé !";
