@@ -1,10 +1,20 @@
 # Dans le brouillard d'Altis
 
-Bonjour à tous, je vous partage la mission "Dans le brouillard d'Altis" que j'ai codé en sqf pour Arma 3.
+Je vous partage la mission "Dans le brouillard d'Altis" que j'ai codé en sqf pour Arma 3.
 Cette mission est une mission de type "mission de sauvetage" où les soldats BLUFOR doivent extraire un otage.
+
+Vous arrivez au petit matin, le soleil va se lever dans les minutes qui vont suivre l'atterrissage.
 L'objectif est de récupérer l'otage et de le ramener à un véhicule puis prendre un hélicoptère pour s'extraire de la zone.
-Il y a un brouillard qui rend la vue limitée, il faut donc être prudent et utiliser les moyens de détection.
-Un drone survolera la zone pour détecter les ennemies et les indiquer sur la carte.
+Il y a un brouillard qui rend la vue limitée, il faut donc être prudent.
+Quand vous serez proche de la cible, un drone survolera la zone pour détecter les ennemies et les indiquer sur la carte.
+
+Des fonctions d'optimisation du suivi des IA sont implémentées dans la mission (boutton d'action : motiver vos troupes).
+Le boutton d'action "Se soignez !" permet aux soldats IA de se soigner.
+La mission est un échec si vous mourrez seulement.
+Si l'otage meurt, retourner à l'hélicoptère en vie
+Si le transporteur meurt, emmener l'otage avec vous dans l'hélcoptère.
+
+Bonne chance !
 
 ## Variables en jeu
 
